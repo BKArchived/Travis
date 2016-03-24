@@ -1,0 +1,14 @@
+app_identifier "com.braksa.Travis" # The bundle identifier of your app
+apple_id "zakariabraksa@gmail.com" # Your Apple email address
+
+# You can uncomment any of the lines below and add your own
+# team selection in case you're in multiple teams
+team_name "Abdelilah Braksa"
+team_id "7LQMTS9FZ5"
+
+# To select a team for iTunes Connect use
+itc_team_name "Zakaria Braksa"
+# itc_team_id "18742801
+
+# you can even provide different app identifiers, Apple IDs and team names per lane:
+# https://github.com/KrauseFx/fastlane/blob/master/docs/Appfile.md
