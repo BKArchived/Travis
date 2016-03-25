@@ -26,7 +26,7 @@ platform :ios do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
     
     
-    increment_build_number
+    #increment_build_number
 
     # xctool # run the tests of your app
   end
@@ -40,8 +40,45 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :beta do
     # sigh
-    gym(scheme: "Travis") # Build your app - more options available
-    pilot
+
+    keychain_name = "ci-travis-certs"
+
+    create_keychain(
+      name: keychain_name,
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      lock_when_sleeps: true,
+      password: SecureRandom.base64
+    )
+
+    # Import distribution certificate
+    import_certificate(
+      certificate_path: "fastlane/Certificates/distribution.p12",
+      certificate_password: ENV["KEY_PASSWORD"],
+      keychain_name: keychain_name
+    )
+
+    # Fetch provisioning profile
+    sigh(
+      adhoc: true, 
+      username: "zakariabraksa@gmail.com",
+      team_id: "7LQMTS9FZ5",
+      provisioning_name: "com.braksa.Travis AppStore",
+      cert_id: "E57KELDS8L"
+    )
+
+    increment_build_number
+
+    # Build your app - more options available
+    gym(scheme: "Travis") 
+
+    # Upload to TestFlight
+    pilot 
+
+    delete_keychain(
+      name: keychain_name
+    )
 
     # sh "your_script.sh"
     # You can also use other beta testing services here
