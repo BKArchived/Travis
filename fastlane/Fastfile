@@ -65,7 +65,7 @@ platform :ios do
       username: "zakariabraksa@gmail.com",
       team_id: "7LQMTS9FZ5",
       provisioning_name: "com.braksa.Travis AppStore",
-      cert_id: "E57KELDS8L"
+      cert_id: "G6R345727F"
     )
 
     increment_build_number
