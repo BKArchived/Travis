@@ -61,7 +61,6 @@ platform :ios do
 
     # Fetch provisioning profile
     sigh(
-      adhoc: true, 
       username: "zakariabraksa@gmail.com",
       team_id: "7LQMTS9FZ5",
       provisioning_name: "com.braksa.Travis AppStore",
